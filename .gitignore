@@ -23,10 +23,10 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
-
+*.vscode
 # Unity3D generated meta files
 *.pidb.meta
-
+UnityPackageManager/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
