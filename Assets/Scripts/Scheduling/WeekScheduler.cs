@@ -46,9 +46,6 @@ public class WeekScheduler : MonoBehaviour {
     private Dictionary<SelectionHandler.Selection, string> selectionDictionary;
 
     [SerializeField]
-    private Dropdown targetSchedules;
-
-    [SerializeField]
     private Text targetScheduleLabel;
 
     [SerializeField]

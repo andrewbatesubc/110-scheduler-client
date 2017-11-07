@@ -88,6 +88,24 @@ public class ServerAPI : MonoBehaviour {
         HandleScheduleGetResponse(request, retrievalSuccess);
     }
 
+	IEnumerator SendScheduleTypeGetRequest(string uri, Action<ScheduleTypesDto> handleScheduleTypeLoadFinished) {
+		UnityWebRequest request = new UnityWebRequest(uri, APIConstants.GET_METHOD);
+		request.downloadHandler = new DownloadHandlerBuffer();
+
+		SetRequestHeaders(request);
+
+		SetInfoText(APIConstants.LOADING_SCHED_TYPE);
+		yield return request.SendWebRequest();
+		byte[] result = request.downloadHandler.data;
+		bool retrievalSuccess = false;
+		ScheduleTypesDto scheduleTypesDto = JsonUtility.FromJson<ScheduleTypesDto>(Encoding.UTF8.GetString(result));
+		if(scheduleTypesDto != null) {
+			retrievalSuccess = true;
+			handleScheduleTypeLoadFinished(scheduleTypesDto);
+		}
+		HandleScheduleTypeGetResponse(request, retrievalSuccess);
+	}
+
     private void HandleScheduleGetResponse(UnityWebRequest request, bool retrievalSuccess) {
         if (request.error != null && request.error.ToLower().Contains("cannot resolve")) {
             SetErrorText(APIConstants.GENERAL_CONNECTION_ERROR);
@@ -100,23 +118,7 @@ public class ServerAPI : MonoBehaviour {
         }
     }
 
-    IEnumerator SendScheduleTypeGetRequest(string uri, Action<ScheduleTypesDto> handleScheduleTypeLoadFinished) {
-        UnityWebRequest request = new UnityWebRequest(uri, APIConstants.GET_METHOD);
-        request.downloadHandler = new DownloadHandlerBuffer();
-
-        SetRequestHeaders(request);
-
-        SetInfoText(APIConstants.LOADING_SCHED_TYPE);
-        yield return request.SendWebRequest();
-        byte[] result = request.downloadHandler.data;
-        bool retrievalSuccess = false;
-        ScheduleTypesDto scheduleTypesDto = JsonUtility.FromJson<ScheduleTypesDto>(Encoding.UTF8.GetString(result));
-        if(scheduleTypesDto != null) {
-            retrievalSuccess = true;
-            handleScheduleTypeLoadFinished(scheduleTypesDto);
-        }
-        HandleScheduleTypeGetResponse(request, retrievalSuccess);
-    }
+   
 
     private void HandleScheduleTypeGetResponse(UnityWebRequest request, bool retrievalSuccess) {
         if (request.error != null && request.error.ToLower().Contains("cannot resolve")) {

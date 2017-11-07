@@ -21,8 +21,10 @@ public class APIConstants {
     public static string CONTENT_TYPE_JSON = "application/json";
 
     //Loading text status updates
-    public static string LOADING_SCHED_TYPE = "Loading schedule types...";
-    public static string LOADING_SCHED = "Loading schedule...";
+    public static string LOADING_SCHED_TYPE = "Loading schedule types... Please be patient! The server might need to warm up " +
+    	"if it hasn't been used in a while";
+	public static string LOADING_SCHED = "Loading schedule... Please be patient! The server might need to warm up " +
+		"if it hasn't been used in a while";
     public static string SENDING_SCHED = "Sending schedule...";
     public static string GENERAL_CONNECTION_ERROR = "Connection error - please confirm server URL is correct in settings";
     public static string SUCCESS_LOADING_SCHED = "Successfully retrieved schedule";
@@ -31,7 +33,4 @@ public class APIConstants {
         " Please confirm name and schedule type is correct, or submit first if this is your first time";
     public static string FAILURE_LOADING_SCHED_TYPES = "Failed to retrieve schedule types - none exist. Contact course coordinator";
     public static string SUCCESS_SENDING_SCHED = "Successfully sent schedule";
-    public static string FAILURE_SENDING_SCHED = "Failed to send schedule";
-
-    public static string DEFAULT_SCHEDULE_TYPE = "Regular";
 }
