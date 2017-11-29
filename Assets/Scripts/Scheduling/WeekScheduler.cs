@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using System.Linq;
+using System;
 
 public class WeekScheduler : MonoBehaviour {
 
@@ -130,8 +131,9 @@ public class WeekScheduler : MonoBehaviour {
         SaveFirstAndLastName();
         string[] weeklySchedule = GenerateAbbreviatedWeeklySchedule();
         string taName = GenerateTAName();
+        string currentDateAndTime = DateTime.Now.ToString();
         string selectedScheduleType = targetScheduleLabel.text;
-        ScheduleDto scheduleDto = new ScheduleDto(taName, selectedScheduleType, null, weeklySchedule);
+        ScheduleDto scheduleDto = new ScheduleDto(taName, selectedScheduleType, currentDateAndTime, weeklySchedule);
         serverApi.SendSchedule(scheduleDto);
     }
 
