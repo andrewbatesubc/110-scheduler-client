@@ -8,11 +8,14 @@ public class ScheduleDto : JsonEncodableData {
     [SerializeField]
     string scheduleType = null;
     [SerializeField]
+    string date = null;
+    [SerializeField]
     string[] schedulesByDay = null;
 
-    public ScheduleDto(string taName, string scheduleType, string[] schedule) {
+    public ScheduleDto(string taName, string scheduleType, string date, string[] schedule) {
         this.taName = taName;
         this.scheduleType = scheduleType;
+        this.date = date;
         this.schedulesByDay = schedule;
     }
 
@@ -30,6 +33,16 @@ public class ScheduleDto : JsonEncodableData {
 
     public string GetTaName() {
         return taName;
+    }
+
+    public void SetDate(string date)
+    {
+        this.date = date;
+    }
+
+    public string GetDate()
+    {
+        return date;
     }
 
     public void SetScheduleType(string scheduleType)

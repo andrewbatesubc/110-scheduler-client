@@ -131,7 +131,7 @@ public class WeekScheduler : MonoBehaviour {
         string[] weeklySchedule = GenerateAbbreviatedWeeklySchedule();
         string taName = GenerateTAName();
         string selectedScheduleType = targetScheduleLabel.text;
-        ScheduleDto scheduleDto = new ScheduleDto(taName, selectedScheduleType, weeklySchedule);
+        ScheduleDto scheduleDto = new ScheduleDto(taName, selectedScheduleType, null, weeklySchedule);
         serverApi.SendSchedule(scheduleDto);
     }
 
